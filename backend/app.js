@@ -4,6 +4,12 @@ const http = require('http');
 const app = express();
 
 
+require('dotenv').config();
+const dbHost = process.env.DB_HOST;
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PASSWORD;
+
+
 const {routeInit} = require("./routes/config_route");
 
 //middleware
