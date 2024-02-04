@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const {UsersModel} = require('../models/usersModel');
+const {ProductsModel} = require('../models/productsModel');
 
 
 router.get('/', async(req,res)=>{
-    let data = await UsersModel.find({});
+    let data = await ProductsModel.find({});
     res.json(data);
 });
 
@@ -13,15 +13,15 @@ router.post('/', async (req, res) => {
     try {
         console.log('Request Body:', req.body);  // Log the entire request body
 
-        const newUser = new UsersModel({
+        const newProduct = new ProductsModel({
             name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
+            price: req.body.price,
+            category: req.body.category,
         });
 
-        const savedUser = await newUser.save();
+        const savedProduct = await newProduct.save();
 
-        res.status(201).json(savedUser);
+        res.status(201).json(savedProduct);
     } catch (error) {
         console.error('Error creating product:', error);
         res.status(500).json({ error: 'Internal Server Error' });
