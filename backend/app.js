@@ -3,25 +3,26 @@ const path = require('path');
 const http = require('http');
 const app = express();
 
-
-require('dotenv').config();
-const dbHost = process.env.DB_HOST;
-const dbUser = process.env.DB_USER;
-const dbPassword = process.env.DB_PASSWORD;
-
-
-const {routeInit} = require("./routes/config_route");
-
-//middleware
-/*Jason information parsering definition*/
+// Middleware
 app.use(express.json());
-/*Setting the public folder as a static folder where files can be put and the
-client side will have access to it */
-app.use(express.static(path.join(__dirname,"public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
-routeInit(app);
+// Routes
+const indexR = require('../backend/routes/index');
+const usersR = require('../backend/routes/users');
+const productsR = require('../backend/routes/products');
+
+// Use routes
+app.use('/', indexR);
+app.use('/products', productsR);
+app.use('/users', usersR);
+
+// Connect to MongoDB
+require('./db/mongoConnect');
 
 const server = http.createServer(app);
 
-const port = process.env.PORT || "3000";
-server.listen(port);
+const port = process.env.PORT || "3001";
+server.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
