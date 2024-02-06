@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ }
+
+ body{
+    background-color: gray;
+ }
+
+
+.home_page_container{
+    color:white;
+    background-color: gray;
+}
+
+.wellcome{
+    display: flex;
+    justify-content: center;
+}
+
+.wellcome h1{
+    margin-top: 40px;
+    color: white;
+    text-decoration: underline;
+}
+
+
+.market_form{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items:center;
+    margin-top: 30px;
+}
+
+
+.form_inputs{
+    border: 1px solid black;
+    padding: 30px;
+    margin-top: 20px;
+}
+
+.form_inputs label{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.form_inputs input {
+    width: 100%; 
+    margin-bottom: 10px;
+    margin-top: 2px;
+    background-color:rgb(55, 53, 53);
+    color: white;
+}
+
+.center_button{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    position: relative;
+    top:10px;
+}
+
+.form_inputs button{
+    background-color:rgb(55, 53, 53);
+    color: white;
+    height: 20px;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.close_list{
+    display: flex;
+    align-items: center;
+    flex-direction:column;
+    padding: 15px;
+}
+
+.close_list button{
+    background-color:rgb(55, 53, 53);
+    color: white;
+    height: 25px;
+    width: 50px;
+    border-radius: 5px;
+}
