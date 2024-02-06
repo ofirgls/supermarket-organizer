@@ -70,17 +70,4 @@
     border-radius: 5px;
 }
 
-.close_list{
-    display: flex;
-    align-items: center;
-    flex-direction:column;
-    padding: 15px;
-}
 
-.close_list button{
-    background-color:rgb(55, 53, 53);
-    color: white;
-    height: 25px;
-    width: 50px;
-    border-radius: 5px;
-}

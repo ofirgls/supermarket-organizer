@@ -6,6 +6,7 @@ import './css/HomePage.css';
 const HomePage = () => {
   const [productName, setProductName] = useState('');
   const [productCategory, setProductCategory] = useState('');
+  
 
   const dispatch = useDispatch();
 
@@ -13,6 +14,8 @@ const HomePage = () => {
     console.log("productName", { productName }, "productCategory", { productCategory });
     const payload = { name: productName, category: productCategory };
     dispatch(addProduct(payload));
+    setProductName('');
+    setProductCategory('');
   };
 
   return (
@@ -32,6 +35,7 @@ const HomePage = () => {
             onChange={(e) => {
               setProductName(e.target.value);
             }}
+            required
           />
           <br />
           <label htmlFor='productCategory'>Product category:</label>
@@ -41,6 +45,7 @@ const HomePage = () => {
             name='productCategory'
             value={productCategory}
             onChange={(e) => setProductCategory(e.target.value)}
+            required
           />
           <h3>Add the product to the current list</h3>
           <div className='center_button'>
@@ -48,11 +53,6 @@ const HomePage = () => {
           </div>
         </div>
       </form>
-
-      <div className='close_list'>
-        <h3>Close the current list</h3>
-        <button>Close</button>
-      </div>
     </div>
   );
 }
