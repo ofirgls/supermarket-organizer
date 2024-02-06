@@ -1,18 +1,19 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import './css/CurrentList.css';
 
 const CurrentList = () => {
   const marketList = useSelector((state) => state.market.marketList);
   const categories = [...new Set(marketList.map((product) => product.category))];
 
   return (
-    <div>
+    <div className='list_container'>
       <h2>Current List:</h2>
-      <ul>
+      <ul className='category_list'>
         {categories.map((category, index) => (
-          <li key={index}>
+          <li key={index} className='singel_category'>
             <h2>{category}:</h2>
-            <ul>
+            <ul className='products'>
               {marketList.filter((product) => product.category === category).map((product, subIndex) => (
                 <li key={subIndex}>{product.name}</li>
               ))}
