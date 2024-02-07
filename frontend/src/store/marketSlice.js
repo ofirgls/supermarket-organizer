@@ -20,7 +20,7 @@ const marketSlice = createSlice({
     },
     removeProduct: (state, action) => {
       state.marketList = state.marketList.filter(product => product.id !== action.payload);
-    }
+    },
   },
 });
 

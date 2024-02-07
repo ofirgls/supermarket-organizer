@@ -24,3 +24,12 @@
     text-decoration: underline;
 }
 
+.num_of_products{
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+    padding: 3px;
+    margin-right: 5px;
+    background-color: rgb(207, 95, 95);  
+}
+
