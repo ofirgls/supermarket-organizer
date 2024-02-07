@@ -18,8 +18,11 @@ const marketSlice = createSlice({
         state.marketList[productIndex].color = color;
       }
     },
+    removeProduct: (state, action) => {
+      state.marketList = state.marketList.filter(product => product.id !== action.payload);
+    }
   },
 });
 
-export const { addProduct, changeColor } = marketSlice.actions;
+export const { addProduct, changeColor, removeProduct } = marketSlice.actions;
 export default marketSlice.reducer;

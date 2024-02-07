@@ -75,3 +75,15 @@
 .buy.red:hover {
     background-color: rgb(207, 95, 95);
 }
+
+.remove_product{
+    margin-left: 5px ;
+    padding:3px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.remove_product:hover{
+    background-color: black;
+    color: white;
+}
