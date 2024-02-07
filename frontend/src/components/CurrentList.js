@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './css/CurrentList.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeColor } from '../store/marketSlice';
+import { changeColor, removeProduct } from '../store/marketSlice';
 
 const CurrentList = () => {
   const marketList = useSelector((state) => state.market.marketList);
@@ -12,10 +12,10 @@ const CurrentList = () => {
   useEffect(() => {
     const initialClickedProducts = {};
     marketList.forEach(product => {
-      initialClickedProducts[product.id] = product.color || 'red'; 
+      initialClickedProducts[product.id] = product.color || 'red';
     });
     setClickedProducts(initialClickedProducts);
-  }, [marketList]); 
+  }, [marketList]);
 
   const toggleColor = (productId) => {
     const updatedClickedProducts = {
@@ -42,6 +42,12 @@ const CurrentList = () => {
                     onClick={() => toggleColor(product.id)}
                   >
                     {product.name}
+                  </button>
+                  <button
+                    className='remove_product'
+                    onClick={() => dispatch(removeProduct(product.id))}
+                  >
+                    remove
                   </button>
                 </li>
               ))}

@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-
 .list_container {
     color: white;
     display: flex;
@@ -13,7 +12,7 @@
     margin-top: 30px;
 }
 
-.list_container>h2 {
+.list_container > h2 {
     margin-bottom: 20px;
 }
 
@@ -63,15 +62,36 @@
     word-wrap: break-word;
 }
 
-
 .buy.green {
     background-color: green;
 }
 
 .buy.red {
-    background-color: red;
+    background-color: rgb(207, 95, 95);
 }
 
 .buy.red:hover {
-    background-color: rgb(207, 95, 95);
+    background-color: rgb(178, 57, 57);
+}
+
+.remove_product {
+    margin-left: 5px;
+    padding: 3px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.remove_product:hover {
+    background-color: rgb(45, 34, 34);
+    color: white;
+}
+
+
+@media(max-width: 768px) {
+    .category_list .singel_category {
+        min-width: 300px;
+        max-width: 300px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
 }

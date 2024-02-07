@@ -26,7 +26,7 @@ const HomePage = () => {
   return (
     <div className='home_page_container'>
       <div className='wellcome'>
-        <h1>Welcome to the market list organizer</h1>
+        <h1>Market list organizer</h1>
       </div>
       <form className='market_form' onSubmit={(e) => { e.preventDefault(); addNewProduct(); }}>
         <h2>Add your products to the list:</h2>
@@ -45,7 +45,7 @@ const HomePage = () => {
           <br />
           {(productCategory === "" && productCategory !== "new category") || categories.includes(productCategory) ? (
             <div>
-              <label htmlFor='productCategory' style={{ marginBottom: "20px" }}>Product category:</label>
+              <label htmlFor='productCategorySelect' style={{ marginBottom: "20px" }}>Product category:</label>
               <br />
               <select
                 id='productCategorySelect'
@@ -53,7 +53,7 @@ const HomePage = () => {
                 value={productCategory}
                 onChange={(e) => setProductCategory(e.target.value)}
                 required
-                style={{ marginTop: "20px" }}
+                className='select_category'
               >
                 <option value="">Select Category</option>
                 {categories.map((category, index) => (
@@ -66,7 +66,7 @@ const HomePage = () => {
           {productCategory === "new category" || (!categories.includes(productCategory) && productCategory !== "") ?
             (
               <div>
-                <label htmlFor='productCategory'>Product category:</label>
+                <label htmlFor='productCategoryInput'>Product category:</label>
                 <input
                   type='text'
                   id='productCategoryInput'
