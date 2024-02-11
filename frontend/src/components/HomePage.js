@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addProduct } from '../store/marketSlice';
 import './css/HomePage.css';
 
 const HomePage = () => {
@@ -8,19 +6,36 @@ const HomePage = () => {
   const [productCategory, setProductCategory] = useState('');
   const [categories, setCategories] = useState(["fruits", "vegetables", "cheeses", "drinks", "snacks"]);
 
-  const dispatch = useDispatch();
+  const addNewProduct = async () => {
+    try {
+      if (!categories.includes(productCategory)) {
+        setCategories([...categories, productCategory]);
+      }
 
-  const addNewProduct = () => {
-    if (!categories.includes(productCategory)) {
-      setCategories([...categories, productCategory]);
+      const response = await fetch('http://localhost:3001/products/addproducts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: productName,
+          category: productCategory,
+          color: 'red',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add product');
+      }
+
+      const data = await response.json();
+      console.log('Product added successfully:', data);
+      
+      setProductName('');
+      setProductCategory('');
+    } catch (error) {
+      console.error('Error adding product:', error);
     }
-    console.log(categories);
-    const randomId = Math.floor(Math.random() * 10000000000);
-    console.log("productName: ", productName, "productCategory: ", productCategory, "randomId: ", randomId);
-    const payload = { name: productName, category: productCategory, id: randomId, color: "red"};
-    dispatch(addProduct(payload));
-    setProductName('');
-    setProductCategory('');
   };
 
   return (

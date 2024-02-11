@@ -1,10 +1,20 @@
 const mongoose = require('mongoose');
 
-
-const productsSchema = new mongoose.Schema ({
+const productsSchema = new mongoose.Schema({
     name: String,
-    price: Number,
-    category:String,
+    category: String,
+    color: {
+        type: String,
+        default: "red"
+    }
+}, {
+    id: true,
+    toJSON: {
+        transform(doc, ret) {
+            ret.id = ret._id;
+            delete ret._id;
+        }
+    }
 });
 
 const ProductsModel = mongoose.model("products", productsSchema);
