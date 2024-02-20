@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const productsSchema = new mongoose.Schema({
     name: String,
     category: String,
-    color: {
+    status: {
         type: String,
-        default: "red"
+        enum:["bought", "deleted", "added"],
+        default: "added"
     }
 }, {
     id: true,
@@ -20,4 +21,3 @@ const productsSchema = new mongoose.Schema({
 const ProductsModel = mongoose.model("products", productsSchema);
 exports.ProductsModel = ProductsModel;
 
-//aaaaaa

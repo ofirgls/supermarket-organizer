@@ -3,19 +3,19 @@ const router = express.Router();
 const {ProductsModel} = require('../models/productsModel');
 
 
-router.get('/getproducts', async(req,res)=>{
+router.get('/', async(req,res)=>{
     let data = await ProductsModel.find({});
     res.json(data);
 });
 
 
-router.post('/addproducts', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         console.log('Request Body:', req.body);  
 
         const newProduct = new ProductsModel({
             name: req.body.name,
-            color: req.body.color,
+            status: req.body.added,
             category: req.body.category,
         });
 
@@ -43,7 +43,7 @@ router.delete('/:id', async (req, res) => {
   });
 
   
-  router.put('/:id/updateColor', async (req, res) => {
+  router.put('/:id', async (req, res) => {
     try {
       const productId = req.params.id;
       const product = await ProductsModel.findById(productId);
@@ -51,14 +51,13 @@ router.delete('/:id', async (req, res) => {
       if (!product) {
         return res.status(404).json({ message: 'Product not found' });
       }
-  
-      // Toggle color
-      product.color = product.color === 'red' ? 'green' : 'red';
+
+      product.status = product.status === 'added' ? 'bought' : 'added';
       await product.save();
   
       res.json(product);
     } catch (error) {
-      console.error('Error updating product color:', error);
+      console.error('Error updating product:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
   });

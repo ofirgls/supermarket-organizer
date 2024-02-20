@@ -9,17 +9,21 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 30px;
+    height: 100vh;
+    background:gray;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .list_container > h2 {
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .category_list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    margin-top: 20px;
 }
 
 .category_list .singel_category {
@@ -28,7 +32,7 @@
     margin-right: 20px;
     margin-bottom: 20px;
     list-style-type: none;
-    border: 1px solid black;
+    border: 2px solid black;
     padding: 20px;
     box-sizing: border-box;
     flex: 1;
@@ -62,15 +66,15 @@
     word-wrap: break-word;
 }
 
-.buy.green {
+.buy.bought {
     background-color: green;
 }
 
-.buy.red {
+.buy.added {
     background-color: rgb(207, 95, 95);
 }
 
-.buy.red:hover {
+.buy.added:hover {
     background-color: rgb(178, 57, 57);
 }
 
@@ -95,3 +99,5 @@
         margin-bottom: 10px;
     }
 }
+
+

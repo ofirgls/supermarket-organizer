@@ -12,7 +12,7 @@ const HomePage = () => {
         setCategories([...categories, productCategory]);
       }
 
-      const response = await fetch('http://localhost:3001/products/addproducts', {
+      const response = await fetch('http://localhost:3001/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ const HomePage = () => {
         body: JSON.stringify({
           name: productName,
           category: productCategory,
-          color: 'red',
+          status: 'added',
         }),
       });
 

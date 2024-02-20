@@ -4,6 +4,11 @@ import './css/CurrentList.css';
 const CurrentList = () => {
   const [data, setData] = useState(null);
   const [categories, setCategories] = useState([]);
+  const statusOrder = {
+    "added": 1,
+    "bought": 2,
+    "deleted": 3
+  };
 
   useEffect(() => {
     fetchData();
@@ -11,7 +16,7 @@ const CurrentList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:3001/products/getproducts');
+      const response = await fetch('http://localhost:3001/products');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -24,9 +29,9 @@ const CurrentList = () => {
     }
   };
 
-  const updateColor = async (productId) => {
+  const updateStatus = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:3001/products/${productId}/updateColor`, {
+      const response = await fetch(`http://localhost:3001/products/${productId}`, {
         method: 'PUT',
       });
       if (!response.ok) {
@@ -35,7 +40,7 @@ const CurrentList = () => {
       const updatedProduct = await response.json();
       setData(data.map(product => product.id === productId ? updatedProduct : product));
     } catch (error) {
-      console.error('Error updating color:', error);
+      console.error('Error updating :', error);
     }
   };
 
@@ -65,16 +70,23 @@ const CurrentList = () => {
       <ul className='category_list'>
         {data && categories.map((category) => {
           const categoryProducts = data.filter((product) => product.category === category);
-          if (categoryProducts.length > 0) {
+          const sortedProducts = categoryProducts.sort((a, b) => {
+            const priorityA = statusOrder[a.status];
+            const priorityB = statusOrder[b.status];
+            
+            return priorityA - priorityB || a.id - b.id;
+          });
+
+          if (sortedProducts.length > 0) {
             return (
               <li key={category} className='singel_category'>
                 <h2>{category}:</h2>
                 <ul className='products'>
-                  {categoryProducts.map((product) => (
+                  {sortedProducts.map((product) => (
                     <li key={product.id}>
                       <button
-                        className={`buy ${product.color}`}
-                        onClick={() => updateColor(product.id)}
+                        className={`buy ${product.status}`}
+                        onClick={() => updateStatus(product.id)}
                       >
                         {product.name}
                       </button>
